@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-12-03T12:03:52
+# Project created by QtCreator 2017-12-03T14:14:38
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = final_project
+TARGET = Plane_Game
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,10 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    player.cpp
+        mainwindow.cpp \
+    player.cpp \
+    bullet.cpp
 
 HEADERS += \
+        mainwindow.h \
     globals.h \
-    player.h
+    player.h \
+    bullet.h
 
-FORMS +=
+FORMS += \
+        mainwindow.ui
