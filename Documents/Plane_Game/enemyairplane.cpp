@@ -1,8 +1,12 @@
 #include "enemyairplane.h"
+#include <QDebug>
+#include "game.h"
 
 EnemyAirplane::EnemyAirplane()
 {
-    this->setRect(0, 0, 70, 70);
+    this->setRect(0, 0, 130, 50);
+    this->setPos(WIN_WIDTH/3 - rect().width()/2, 0);
+
     //randomly set enemy types:
 
     m_type = getRandomNum(ENEMY1, ENEMY3);
@@ -18,9 +22,12 @@ EnemyAirplane::EnemyAirplane()
         m_energy = ENEMY3_NRG;
         break;
     default:
-        qDebug() >> "Error";
+        qDebug() << "Error";
         break;
     }
+    m_timer = new QTimer();
+    QObject::connect (m_timer, SIGNAL(timeout()), this, SLOT(move()));
+    m_timer->start(50);
 
 }
 
@@ -33,13 +40,26 @@ void EnemyAirplane::loseEnergy(int energy)
 {
     m_energy -= energy;
     if (m_energy < 0)
-        scene()->removeItem(this); //DEAD
+    {
+        m_game->checkDead(this);
+//        scene()->removeItem(this); //DEAD covered in game cpp
+    }
 }
 
 void EnemyAirplane::setBossLevel()
 {
 
     m_energy = BOSS_NRG;
+}
+
+void EnemyAirplane::move()
+{
+    this->setPos(x(), y() + 5);
+    if (this->pos().y() + rect().height() < 0)
+    {
+       scene()->removeItem(this);
+       delete this;
+    }
 }
 
 
