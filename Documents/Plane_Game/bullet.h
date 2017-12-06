@@ -8,9 +8,11 @@ class Bullet: public QObject, public QGraphicsRectItem
 public:
     Bullet();
     Q_OBJECT
+    virtual ~Bullet();
 
 public slots:
     void move();
+
 private:
     QTimer* m_timer;
 };

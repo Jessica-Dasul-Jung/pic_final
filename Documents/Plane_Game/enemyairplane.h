@@ -4,19 +4,23 @@
 #include "globals.h"
 
 class Game;
-class EnemyAirplane: public QGraphicsRectItem, public QObject
+class EnemyAirplane: public QObject, public QGraphicsRectItem
 {
+        Q_OBJECT
 public:
-    Q_OBJECT
-    EnemyAirplane();
+    EnemyAirplane(int type);
+    virtual ~EnemyAirplane();
+
     //accessor:
     int getEnergy();
-
     //mutator:
     void loseEnergy(int energy); //dead if energy < 0
     void setBossLevel();
+
+
 public slots:
     void move();
+
 private:
     int m_energy;
     int m_type;

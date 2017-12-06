@@ -2,23 +2,27 @@
 #include <QDebug>
 #include "game.h"
 
-EnemyAirplane::EnemyAirplane()
+EnemyAirplane::EnemyAirplane(int type)
 {
     this->setRect(0, 0, 130, 50);
     this->setPos(WIN_WIDTH/3 - rect().width()/2, 0);
 
-    //randomly set enemy types:
+    //consistent enemy types:
+    m_type = type;
 
-    m_type = getRandomNum(ENEMY1, ENEMY3);
+//    m_type = getRandomNum(ENEMY1, ENEMY3);
     switch (m_type)
     {
     case ENEMY1:
         m_energy = ENEMY1_NRG;
+        this->setPos(WIN_WIDTH/6 - rect().width()/2, 0);
         break;
     case ENEMY2:
         m_energy = ENEMY2_NRG;
+        this->setPos((WIN_WIDTH/2) - rect().width()/2, 0);
         break;
     case ENEMY3:
+        this->setPos(5*(WIN_WIDTH/6) - rect().width()/2, 0);
         m_energy = ENEMY3_NRG;
         break;
     default:
@@ -31,6 +35,11 @@ EnemyAirplane::EnemyAirplane()
 
 }
 
+EnemyAirplane::~EnemyAirplane()
+{
+    delete m_timer;
+}
+
 int EnemyAirplane::getEnergy()
 {
     return m_energy;
@@ -39,10 +48,10 @@ int EnemyAirplane::getEnergy()
 void EnemyAirplane::loseEnergy(int energy)
 {
     m_energy -= energy;
-    if (m_energy < 0)
+    if (m_energy <= 0)
     {
-        m_game->checkDead(this);
-//        scene()->removeItem(this); //DEAD covered in game cpp
+        scene()->removeItem(this);
+        delete this;
     }
 }
 
@@ -55,10 +64,11 @@ void EnemyAirplane::setBossLevel()
 void EnemyAirplane::move()
 {
     this->setPos(x(), y() + 5);
-    if (this->pos().y() + rect().height() < 0)
+    if (this->pos().y() + rect().height() > WIN_HEIGHT)
     {
-       scene()->removeItem(this);
-       delete this;
+        qDebug() << "Deleted";
+        scene()->removeItem(this);
+        delete this;
     }
 }
 
