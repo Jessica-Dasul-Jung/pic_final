@@ -2,11 +2,12 @@
 #include <QDebug>
 #include "game.h"
 
-EnemyAirplane::EnemyAirplane(int type)
+EnemyAirplane::EnemyAirplane(int type, Game* game)
 {
     this->setRect(0, 0, 130, 50);
-    this->setPos(WIN_WIDTH/3 - rect().width()/2, 0);
 
+
+    m_game = game;
     //consistent enemy types:
     m_type = type;
 
@@ -66,6 +67,7 @@ void EnemyAirplane::move()
     this->setPos(x(), y() + 5);
     if (this->pos().y() + rect().height() > WIN_HEIGHT)
     {
+        m_game->EnemyArrives(m_energy);
         qDebug() << "Deleted";
         scene()->removeItem(this);
         delete this;

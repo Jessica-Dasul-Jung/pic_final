@@ -8,7 +8,7 @@ class EnemyAirplane: public QObject, public QGraphicsRectItem
 {
         Q_OBJECT
 public:
-    EnemyAirplane(int type);
+    EnemyAirplane(int type, Game* game);
     virtual ~EnemyAirplane();
 
     //accessor:

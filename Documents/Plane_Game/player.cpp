@@ -1,46 +1,42 @@
 #include "player.h"
 #include <QDebug>
-
+#include "bullet.h"
 
 Player::Player()
 {
-    //m_bullet = new Bullet();
+    m_energy = PLAYER_INITIAL_ENERGY;
+
 }
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "This is pressed";
-    Bullet* bullet = new Bullet();
 
-    switch(event->key())
+    if (event->key() == Qt::Key_Right)
     {
-    case Qt::Key_Right:
         setPos(x()+10, y());
-        break;
-    case Qt::Key_Left:
-        setPos(x()-10, y());
-        break;
-    case Qt::Key_Up:
-        setPos(x(), y() - 10); //anchor (0,0) is top left corner
-        break;
-    case Qt::Key_Down:
-        setPos(x(), y() + 10);
-        break;
-    case Qt::Key_Space:
-        bullet->setPos(x(), y());
-        scene()->addItem(bullet);
-        return;
-    default: break;
-        //does not do anything
-
     }
-    delete bullet;
-
+    else if (event->key() == Qt::Key_Left)
+    {
+        setPos(x()-10, y());
+    }
+    else if (event->key() == Qt::Key_Space)
+    {
+        Bullet* bullet = new Bullet();
+        bullet->setPos(x() + rect().width()/2 - bullet->rect().width()/2, y());
+        scene()->addItem(bullet);
+    }
 
 }
 
-void Player::initBullet()
+void Player::loseEnergy(int energy)
 {
+    m_energy -= energy;
+    if (m_energy <= 0)
+    {
+        //scene()->removeItem(this);
+        //delete this;
+        qDebug() << "Player is dead";
+    }
 
 }
 
