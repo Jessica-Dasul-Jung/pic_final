@@ -10,7 +10,7 @@ Game::Game(QGraphicsScene* scene, QWidget* parent)
     //setting game property:
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setFixedSize(WIN_WIDTH,WIN_HEIGHT);//supplementary
+    setFixedSize(WIN_WIDTH,WIN_HEIGHT + 200);//upplementary
 
     m_gamecount = 0;
     m_level = 0;
@@ -50,6 +50,14 @@ Game::Game(QGraphicsScene* scene, QWidget* parent)
     m_overtxt = new QGraphicsTextItem();
     m_overtxt->setPlainText(QString("GAMEOVER"));
 
+/////////////////////////////////////////////////////////////////
+    //Statistics implementation:
+    m_stats = new QGraphicsRectItem();
+    m_stats->setRect(0, 0, SIDE_WIDTH, SIDE_HEIGHT);
+    m_stats->setPos(10, WIN_HEIGHT);
+    m_scene->addItem(m_stats);
+
+/////////////////////////////////////////////////////////////////
     //score text:
     m_scoretxt = new QGraphicsTextItem();
     m_scorelabeltxt = new QGraphicsTextItem();
@@ -57,18 +65,11 @@ Game::Game(QGraphicsScene* scene, QWidget* parent)
     m_scorelabeltxt->setPlainText(QString::fromStdString("Score: "));
     m_scoretxt->setPlainText(QString::number(m_score));
 
-    m_scorelabeltxt->setPos(10, WIN_HEIGHT - 50);
-    m_scoretxt->setPos(20, WIN_HEIGHT - 50);
+    m_scorelabeltxt->setPos(20, WIN_HEIGHT + 10);
+    m_scoretxt->setPos(60, WIN_HEIGHT + 10);
+
     m_scene->addItem(m_scorelabeltxt);
     m_scene->addItem(m_scoretxt);
-
-    //Statistics implementation:
-    m_stats = new QGraphicsRectItem();
-    m_stats->setRect(0, 0, SIDE_WIDTH, SIDE_HEIGHT);
-    m_stats->setPos(10, WIN_HEIGHT - 10);
-    m_scene->addItem(m_stats);
-
-
 
 
 }
