@@ -3,7 +3,6 @@
 #include "enemyairplane.h"
 #include <QDebug>
 
-#define INTERVAL 100;
 Game::Game()
 {
     m_gamecount = 0;
@@ -19,7 +18,7 @@ Game::Game()
 
     m_timer = new QTimer();
     QObject::connect (m_timer, SIGNAL(timeout()), this, SLOT(produceEnemy()));
-    m_timer->start(100);
+    m_timer->start(LV1_INTERVAL);
 }
 
 void Game::produceEnemy()
@@ -28,7 +27,7 @@ void Game::produceEnemy()
     for (int i = 0; i < ENEMY_NUM; i++)
     {
         qDebug() << "enemy produced";
-        EnemyAirplane* enemy = new EnemyAirplane();
+        EnemyAirplane* enemy = new EnemyAirplane(i + 1);
         this->addItem(enemy);
     }
 }
