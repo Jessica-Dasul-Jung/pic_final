@@ -1,8 +1,8 @@
 #include "game.h"
 #include "player.h"
 #include "enemyairplane.h"
+#include "globals.h"
 #include <QDebug>
-
 Game::Game()
 {
     m_gamecount = 0;
@@ -16,9 +16,31 @@ Game::Game()
     m_player->setFlag(QGraphicsItem::ItemIsFocusable);
     m_player->setFocus();
 
+    //BUTTON IMPLEMENTATION:
+    m_playbtn = new QPushButton ("PLAY", this);
+    m_pausebtn = new QPushButton ("PAUSE", this);
+    m_pausebtn->setCheckable (true);
+
+    QHBoxLayout *layout = new QHBoxLayout(this);
+    layout->addWidget(m_playbtn);
+    layout->addWidget(m_pausebtn);
+
+    connect (m_playbtn, SIGNAL(clicked()), this, clickPlay());
+    connect (m_pausebtn, SIGNAL(clicked()), this, clickPause());
+
     m_timer = new QTimer();
     QObject::connect (m_timer, SIGNAL(timeout()), this, SLOT(produceEnemy()));
     m_timer->start(LV1_INTERVAL);
+}
+
+void Game::clickPlay()
+{
+    //m_timer->start(LV1_INTERVAL);
+}
+
+void Game::clickPause()
+{
+    //m_timer->stop();
 }
 
 void Game::produceEnemy()
