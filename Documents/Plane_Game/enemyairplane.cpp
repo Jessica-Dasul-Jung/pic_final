@@ -51,6 +51,7 @@ void EnemyAirplane::loseEnergy(int energy)
     m_energy -= energy;
     if (m_energy <= 0)
     {
+        m_game->increaseScore(m_type);
         scene()->removeItem(this);
         delete this;
     }

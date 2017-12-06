@@ -1,26 +1,19 @@
 //#include "mainwindow.h"
 #include <QApplication>
 #include <QGraphicsView>
-#include "globals.h"
-#include "player.h"
+
+#include "game.h"
+
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //MainWindow w;
     //w.show();
+    QGraphicsScene* scene = new QGraphicsScene();
+    scene->setSceneRect(0, 0, WIN_WIDTH, WIN_HEIGHT);
 
-
-    QGraphicsScene* scene = new  QGraphicsScene();
-    Player* rect = new Player();
-    rect->setRect(0, 0, 100, 100);
-    scene->addItem(rect);
-
-    rect->setFlag(QGraphicsItem::ItemIsFocusable);
-    rect->setFocus();
-
-
-    QGraphicsView* view = new QGraphicsView(scene);
-    view->show();
-
+    Game* game = new Game(scene);
+    game->show();
     return a.exec();
 }

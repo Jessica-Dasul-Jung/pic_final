@@ -28,15 +28,13 @@ void Player::keyPressEvent(QKeyEvent *event)
 
 }
 
+int Player::getEnergy() const
+{
+    return m_energy;
+}
+
 void Player::loseEnergy(int energy)
 {
     m_energy -= energy;
-    if (m_energy <= 0)
-    {
-        //scene()->removeItem(this);
-        //delete this;
-        qDebug() << "Player is dead";
-    }
-
 }
 

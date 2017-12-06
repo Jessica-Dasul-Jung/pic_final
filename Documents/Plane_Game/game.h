@@ -15,6 +15,7 @@ public:
     Game(QGraphicsScene* scene, QWidget* parent = Q_NULLPTR);
     void EnemyArrives(int energy);
     void gameover();
+    void increaseScore(int type); //+10 when it kills enemy1, +20 for enemy2, +30 for enemy3
 
 private slots:
     void clickPlay();
@@ -28,11 +29,18 @@ private:
     int m_level;
     Player* m_player;
     QTimer* m_timer;
+
     QPushButton* m_exitbtn;
     QPushButton* m_replaybtn;
     QPushButton* m_playbtn;
     QPushButton* m_pausebtn;
-    //QWidget* m_widget;
+
+    QGraphicsTextItem* m_overtxt;
+    QGraphicsTextItem* m_scorelabeltxt;
+    QGraphicsTextItem* m_scoretxt;
+    int m_score;
+
+    QGraphicsRectItem* m_stats;
 
 };
 

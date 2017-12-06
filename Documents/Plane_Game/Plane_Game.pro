@@ -27,12 +27,16 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     player.cpp \
+    enemyairplane.cpp \
+    game.cpp \
     bullet.cpp
 
 HEADERS += \
         mainwindow.h \
     globals.h \
     player.h \
+    enemyairplane.h \
+    game.h \
     bullet.h
 
 FORMS += \
