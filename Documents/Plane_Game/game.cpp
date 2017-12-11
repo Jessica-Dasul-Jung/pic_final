@@ -56,6 +56,8 @@ Game::Game(QGraphicsScene* scene, QWidget* parent)
 /////////////////////////////////////////////////////////////////
     //Statistics implementation:
     m_stats = new QGraphicsRectItem();
+    m_stats->setBrush(QBrush(QColor(100, 0, 255, 127)));
+    m_stats->setPen(QPen(QColor(100, 0, 255, 127)));
     m_stats->setRect(0, 0, SIDE_WIDTH, SIDE_HEIGHT);
     m_stats->setPos(10, WIN_HEIGHT);
     m_scene->addItem(m_stats);
@@ -67,6 +69,8 @@ Game::Game(QGraphicsScene* scene, QWidget* parent)
 
     m_scorelabeltxt->setPlainText(QString::fromStdString("Score: "));
     m_scoretxt->setPlainText(QString::number(m_score));
+    m_scoretxt->setDefaultTextColor(Qt::white);
+    m_scorelabeltxt->setDefaultTextColor(Qt::white);
 
     m_scorelabeltxt->setPos(20, WIN_HEIGHT + 10);
     m_scoretxt->setPos(60, WIN_HEIGHT + 10);
