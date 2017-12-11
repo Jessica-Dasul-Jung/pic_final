@@ -41,6 +41,7 @@ private:
     int m_score;
 
     QGraphicsRectItem* m_stats;
+    QGraphicsPixmapItem* m_background;
 
 };
 

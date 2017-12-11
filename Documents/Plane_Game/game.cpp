@@ -12,12 +12,18 @@ Game::Game(QGraphicsScene* scene, QWidget* parent)
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(WIN_WIDTH,WIN_HEIGHT + 200);//upplementary
 
+    //initialize background:
+    setBackgroundBrush(QBrush(QImage(":/picture/space_background.jpg")));
+
+
+    //initialize variable:
     m_gamecount = 0;
     m_level = 0;
     m_score = 0;
     m_scene = scene;
     setScene(m_scene);
 
+    //initialize player:
     m_player = new Player();
     m_player->setPos (WIN_WIDTH/2 - m_player->getWidth()/2, WIN_HEIGHT - m_player->getHeight());
     m_scene->addItem(m_player);
