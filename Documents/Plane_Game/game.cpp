@@ -71,7 +71,12 @@ Game::Game(QGraphicsScene* scene, QWidget* parent)
     m_scene->addItem(m_scorelabeltxt);
     m_scene->addItem(m_scoretxt);
 
+/////////////////////////////////////////////////////////////////
+    setBackgroundBrush((QBrush(Qt::blue, Qt::SolidPattern)));
 
+    //setBackgroundBrush(QBrush(QImage));
+
+    //QGraphicsPixmapItem* item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
 }
 
 void Game::EnemyArrives(int energy)
