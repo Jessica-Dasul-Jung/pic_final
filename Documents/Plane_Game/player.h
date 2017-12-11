@@ -3,7 +3,7 @@
 
 #include "globals.h"
 
-class Player: public QGraphicsRectItem
+class Player: public QGraphicsPixmapItem
 {
 public:
     Player();
@@ -11,6 +11,9 @@ public:
 
     //accessor:
     int getEnergy() const;
+    double getWidth() const;
+    double getHeight() const;
+
 
 
     //mutator:
@@ -20,6 +23,7 @@ public:
 private:
     //Bullet* m_bullet;
     int m_energy;
+    QPixmap* m_image;
 };
 
 #endif // PLAYER_H

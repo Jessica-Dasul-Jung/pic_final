@@ -18,14 +18,11 @@ Game::Game(QGraphicsScene* scene, QWidget* parent)
     m_scene = scene;
     setScene(m_scene);
 
-    //initializing player:
     m_player = new Player();
-    m_player->setRect(0, 0, 100, 100);
-    m_player->setPos(WIN_WIDTH/2 - 50, WIN_HEIGHT - m_player->rect().height());
+    m_player->setPos (WIN_WIDTH/2 - m_player->getWidth()/2, WIN_HEIGHT - m_player->getHeight());
     m_scene->addItem(m_player);
     m_player->setFlag(QGraphicsItem::ItemIsFocusable);
     m_player->setFocus();
-
 
     //producing enemy implementation:
     m_timer = new QTimer();
@@ -72,7 +69,7 @@ Game::Game(QGraphicsScene* scene, QWidget* parent)
     m_scene->addItem(m_scoretxt);
 
 /////////////////////////////////////////////////////////////////
-    setBackgroundBrush((QBrush(Qt::blue, Qt::SolidPattern)));
+    //setBackgroundBrush((QBrush(Qt::blue, Qt::SolidPattern)));
 
     //setBackgroundBrush(QBrush(QImage));
 
