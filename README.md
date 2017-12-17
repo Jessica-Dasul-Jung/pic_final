@@ -18,3 +18,5 @@ Player is given initial energy.
   When it loses energy, the remaining energy text in the stats bar decrease by that amount.
   If its energy reaches zero, the game is over and the status bar changes into GAMEOVER
   instead of play. 
+
+Graphics are copyrighted. I got permission to use them from my internship company. 
