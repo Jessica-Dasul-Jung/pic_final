@@ -4,20 +4,17 @@ Game: Shoot Enemy Airplanes
 
 utilize: Qt 
 
-
-Game Class:
-
-
 Enemy airplanes  fall from each sector: 
   Enemy airplanes are given different amount of energy and graphics according to their types.
-  They fall consistently from 3 sectors and when they reach the bottom, they disappear.
+  They fall consistently from 3 sectors and when they reach the bottom, they disappear,
+  and they make player lose energy. 
   
 
 Player is given initial energy.
   It shoots enemy airplanes using space key and moves around usig direction keys (2D).
   It cannot move up or down.
-
-
-if alien hits the player,player loses energy. 5 types of aliens. boss alien at the end. If player successfully kills boss alien, player wins. If player's energy reaches 0, player loses.
-
-If time permits: different difficulties, different number of sectors, "cheat-version" with stronger weapons
+  Its graphic representation is a tank which can shoot at the airplanes.
+  Its initial energy is given by 1000. 
+  When it loses energy, the remaining energy text in the stats bar decrease by that amount.
+  If its energy reaches zero, the game is over and the status bar changes into GAMEOVER
+  instead of play. 
